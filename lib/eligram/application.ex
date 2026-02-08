@@ -1,15 +1,15 @@
 defmodule Eligram.Application do
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
-  @moduledoc false
-
   use Application
 
   @impl true
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: Eligram.Worker.start_link(arg)
-      # {Eligram.Worker, arg}
+      {Finch, name: Eligram.Finch},
+      Eligram.Config,
+      Eligram.RateLimit.Limiter,
+      Eligram.Queue,
+      Telegram.Dispatcher,
+      Telegram.Poller
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

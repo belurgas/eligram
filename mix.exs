@@ -7,7 +7,13 @@ defmodule Eligram.MixProject do
       version: "0.1.0",
       elixir: "~> 1.19",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      description:
+        "A library for tags with incredible features thar are fully revealed on elixir ",
+      package: [
+        licenses: ["Apache-2.0"],
+        links: %{"GitHub" => "https://github.com/belurgas/eligram"}
+      ]
     ]
   end
 
@@ -19,9 +25,27 @@ defmodule Eligram.MixProject do
     ]
   end
 
+  defp docs do
+    [
+      main: "readme",
+      extras: [
+        "README.md",
+        "guides/en/gettings-started.md",
+        "guides/en/about-project.md",
+        "guides/en/handles.md"
+      ]
+    ]
+  end
+
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
+      {:finch, "~> 0.18"},
+      {:jason, "~> 1.4"},
+      {:hammer, "~> 6.1"},
+      {:telemetry, "~> 1.3"},
+      {:retry, "~> 0.18"}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
