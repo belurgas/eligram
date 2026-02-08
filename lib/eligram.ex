@@ -1,18 +1,21 @@
 defmodule Eligram do
   @moduledoc """
-  Documentation for `Eligram`.
+  Telegram bot framework for Elixir.
   """
+
+  alias Eligram.Dispatcher
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Eligram.hello()
-      :world
-
+  Dispatch a raw Telegram update.
   """
-  def hello do
-    :world
+  def dispatch(update) do
+    Dispatcher.dispatch(update)
+  end
+
+  @doc """
+  Send a message.
+  """
+  def send_message(chat_id, text, opts \\ []) do
+    Eligram.Client.send_message(chat_id, text, opts)
   end
 end
